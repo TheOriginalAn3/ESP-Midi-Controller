@@ -10,6 +10,7 @@ public:
     int readAndMap();
     bool hasChanged();
     int lastValue;
+    int secondLastValue;
 
 private:
     int pin;

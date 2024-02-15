@@ -5,20 +5,22 @@
 MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI);
 
 // Initialize your control inputs here
-PotiInput fader1(34, 0, 3720); // Example fader
-PotiInput fader2(35, 0, 3720); // Example fader
-PotiInput fader3(32, 0, 3720); // Example fader
-PotiInput fader4(33, 0, 3720); // Example fader
+PotiInput fader1(34, 0, 127); // Example fader
+PotiInput fader2(35, 0, 127); // Example fader
+PotiInput fader3(32, 0, 127); // Example fader
+PotiInput fader4(33, 0, 127); // Example fader
 // Add more controls as needed
+int _analogReadResolution = 12;
 
 void setup() {
     Serial2.begin(31250); // Start MIDI communication on Serial2
+    analogReadResolution(_analogReadResolution);
     MIDI.begin(MIDI_CHANNEL_OMNI);
 }
 
 void checkAndSendMIDI(PotiInput& control, int ccNumber) {
     if (control.hasChanged()) {
-        MIDI.sendControlChange(ccNumber, control.lastValue, 1); // Assuming MIDI channel 1
+        MIDI.sendControlChange(ccNumber, control.secondLastValue, 1); // Assuming MIDI channel 1
     }
 }
 

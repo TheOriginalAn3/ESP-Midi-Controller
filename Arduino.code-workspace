@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "D:/Shared_Projects/Arduino"
+		},
+		{
+			"name": "ESP Midi Controller",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
