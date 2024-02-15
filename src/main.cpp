@@ -6,9 +6,9 @@ MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI);
 
 // Initialize your control inputs here
 PotiInput fader1(34, 0, 3720); // Example fader
-PotiInput fader2(35, 0, 3720); // Example fader
-PotiInput fader3(32, 0, 3720); // Example fader
-PotiInput fader4(33, 0, 3720); // Example fader
+//PotiInput fader2(35, 0, 3720); // Example fader
+//PotiInput fader3(32, 0, 3720); // Example fader
+//PotiInput fader4(33, 0, 3720); // Example fader
 // Add more controls as needed
 
 void setup() {
@@ -25,9 +25,9 @@ void checkAndSendMIDI(PotiInput& control, int ccNumber) {
 void loop() {
     // Check each control input for changes and send MIDI CC if necessary
     checkAndSendMIDI(fader1, 1); // CC number 1 for fader1
-    checkAndSendMIDI(fader2, 2); // CC number 1 for fader1
-    checkAndSendMIDI(fader3, 3); // CC number 1 for fader1
-    checkAndSendMIDI(fader4, 4); // CC number 1 for fader1
+    //checkAndSendMIDI(fader2, 2); // CC number 1 for fader1
+    //checkAndSendMIDI(fader3, 3); // CC number 1 for fader1
+    //checkAndSendMIDI(fader4, 4); // CC number 1 for fader1
     // Add similar checks for other controls
     
     delay(100);
