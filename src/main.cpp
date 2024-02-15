@@ -1,6 +1,7 @@
 #include <MIDI.h>
 #include "PotiInput.h" // Include the header file for the PotiInput class
 #include <Wire.h>
+#include <ESP32Servo.h>
 
 // Create an instance of the MIDI library
 // MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI);
@@ -8,14 +9,20 @@
 // Initialize your control inputs here
 // PotiInput fader1(34, 0, 3720); // Example fader
 
+// Motor
 // AS5600 I2C address (check your sensor's datasheet)
 #define AS5600_ADDRESS 0x36
+
+// ESC Stuff
+Servo ESC;
+int speed;
 
 void setup() {
     Serial2.begin(31250); // Start MIDI communication on Serial2
     Serial.begin(115200);
     // MIDI.begin(MIDI_CHANNEL_OMNI);
     Wire.begin(); // Initialize I2C
+    ESC.attach(13, 1000, 2000);
 }
 
 
@@ -47,5 +54,5 @@ void loop() {
     // checkAndSendMIDI(fader1, 1); // CC number 1 for fader1
     // Add similar checks for other controls
     requestAngle();
-    delay(100);
+    ESC.write(map(analogRead(34), 0, 3700, 0, 50));
 }
